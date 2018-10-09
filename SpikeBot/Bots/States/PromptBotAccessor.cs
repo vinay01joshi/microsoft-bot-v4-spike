@@ -3,7 +3,7 @@ using Microsoft.Bot.Builder;
 
 namespace SpikeBot.Bots.States
 {
-    public class PromptAccessor
+    public class PromptBotAccessor
     {
         public const string TopicStateName = "PrimitivePrompts.TopicStateAccessor";
 
@@ -17,7 +17,7 @@ namespace SpikeBot.Bots.States
 
         public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
 
-        public PromptAccessor(ConversationState conversationState, UserState userState)
+        public PromptBotAccessor(ConversationState conversationState, UserState userState)
         {
             if (conversationState is null)
             {

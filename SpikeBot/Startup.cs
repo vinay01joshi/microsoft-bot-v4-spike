@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SpikeBot.Bots;
+using SpikeBot.Bots.States;
 
 namespace SpikeBot
 {
@@ -54,7 +56,7 @@ namespace SpikeBot
         /// <seealso cref="https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0"/>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddBot<EchoWithCounterBot>(options =>
+            services.AddBot<PromptBot>(options =>
             {
                 var secretKey = Configuration.GetSection("botFileSecret")?.Value;
                 var botFilePath = Configuration.GetSection("botFilePath")?.Value;
@@ -74,7 +76,7 @@ namespace SpikeBot
                 options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
 
                 // Creates a logger for the application to use.
-                ILogger logger = _loggerFactory.CreateLogger<EchoWithCounterBot>();
+                ILogger logger = _loggerFactory.CreateLogger<PromptBot>();
 
                 // Catches any errors that occur during a conversation turn and logs them.
                 options.OnTurnError = async (context, exception) =>
@@ -108,13 +110,15 @@ namespace SpikeBot
                 // Create Conversation State object.
                 // The Conversation State object is where we persist anything at the conversation-scope.
                 var conversationState = new ConversationState(dataStore);
-
                 options.State.Add(conversationState);
+
+                var userState = new UserState(dataStore);
+                options.State.Add(userState);
             });
 
             // Create and register state accesssors.
             // Acessors created here are passed into the IBot-derived class on every turn.
-            services.AddSingleton<EchoBotAccessors>(sp =>
+            services.AddSingleton<PromptBotAccessor>(sp =>
             {
                 var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
                 if (options == null)
@@ -123,6 +127,7 @@ namespace SpikeBot
                 }
 
                 var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
+                var userState = options.State.OfType<UserState>().FirstOrDefault();
                 if (conversationState == null)
                 {
                     throw new InvalidOperationException("ConversationState must be defined and added before adding conversation-scoped state accessors.");
@@ -130,9 +135,10 @@ namespace SpikeBot
 
                 // Create the custom state accessor.
                 // State accessors enable other components to read and write individual properties of state.
-                var accessors = new EchoBotAccessors(conversationState)
+                var accessors = new PromptBotAccessor(conversationState, userState)
                 {
-                    CounterState = conversationState.CreateProperty<CounterState>(EchoBotAccessors.CounterStateName),
+                    TopicStateAccessor = conversationState.CreateProperty<TopicState>(PromptBotAccessor.TopicStateName),
+                    UserProfileAccessor = userState.CreateProperty<UserProfile>(PromptBotAccessor.UserProfileName),
                 };
 
                 return accessors;
