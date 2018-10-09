@@ -1,0 +1,12 @@
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\bin\Debug\netcoreapp2.0\BotConfiguration.bot
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\bin\Debug\netcoreapp2.0\SpikeBot.deps.json
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\bin\Debug\netcoreapp2.0\SpikeBot.runtimeconfig.json
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\bin\Debug\netcoreapp2.0\SpikeBot.runtimeconfig.dev.json
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\bin\Debug\netcoreapp2.0\SpikeBot.dll
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\bin\Debug\netcoreapp2.0\SpikeBot.pdb
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\obj\Debug\netcoreapp2.0\SpikeBot.csprojAssemblyReference.cache
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\obj\Debug\netcoreapp2.0\SpikeBot.csproj.CoreCompileInputs.cache
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\obj\Debug\netcoreapp2.0\SpikeBot.AssemblyInfoInputs.cache
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\obj\Debug\netcoreapp2.0\SpikeBot.AssemblyInfo.cs
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\obj\Debug\netcoreapp2.0\SpikeBot.dll
+D:\Dev-Box\Microsoft Bot\botv4-spikes\SpikeBot\SpikeBot\obj\Debug\netcoreapp2.0\SpikeBot.pdb
